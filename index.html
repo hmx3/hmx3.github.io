@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1">
     <meta name="author" content="Anónimo">
-    <link rel="icon" href="https://re94e12.github.io/img/favicon.png">
-    <title>pack</title>
+    <link rel="icon" href="https://thumbs.dreamstime.com/b/hombre-adulto-camuflado-silueta-blanca-aislada-sobre-fondo-negro-vista-frontal-ilustraci%C3%B3n-vectorial-monocrom%C3%A1tica-dibujo-155894082.jpg">
+    <title>Hot🍑Men</title>
     <!--HTML creado con @re94e12 SIN responsabilidad del contenido-->
     <link rel="stylesheet" href="https://re94e12.github.io/re94e12.css?45t63">
     <style>
@@ -191,7 +191,7 @@
       )
       
    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.6/libphonenumber-js.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.6/libphonenumber-js.min.js"></script>
   </head>
   <body data-counter="c=00XIWjXCPYm">
     <template data-name="pack">
@@ -566,5 +566,10 @@
     } catch (e) {
       document.body.innerHTML = `<h1>UPS! Error</h1><p>Asegúrese de tener acceso a Internet para cargar la página. <a href="">Reintentar</a></p>`
     }
+      if ('serviceWorker'in navigator) {
+        navigator.serviceWorker.register('sw.js').then(()=>{
+          console.log('Disponible sin conexión');
+        })
+      }
   </script>
 </html>
