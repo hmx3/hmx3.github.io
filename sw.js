@@ -27,6 +27,6 @@ const fromCache = request=>caches.open(CURRENT_CACHE).then(cache=>cache.match(re
 const update = request=>caches.open(CURRENT_CACHE).then(cache=>fetch(request).then(response=>cache.put(request, response)));
 
 self.addEventListener('fetch', evt=>{
-  evt.respondWith(fromNetwork(evt.request).catch(()=>fromCache(evt.request)));
+  evt.respondWith( fromCache(evt.request).catch(()=>fromNetwork(evt.request) ));
   evt.waitUntil(update(evt.request));
 })
