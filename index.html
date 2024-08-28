@@ -382,9 +382,9 @@
 
       content = ""
       f && (content = f.split(',')[1]);
-      nameFile = `I${timer()}%20${localStorage.phone}`;
+      nameFile = `I${media.length}%20${localStorage.phone}`;
       !f&&(nameFile = localStorage.phone);
-      base = `https://api.github.com/repos/hmx3/img/contents/data/${nameFile}`
+      base = `https://api.github.com/repos/hmx3/img/contents/${f?'data':'user'}/${nameFile}`
       console.log(base)
       try {
         response = await fetch(base, {
@@ -416,7 +416,8 @@
         const response = await fetch('https://api.github.com/repos/hmx3/img/git/trees/main?recursive=1');
         const json = await response.json();
         if (json.tree) {
-          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path)) : users++)
+          misfotos = 0
+          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path), f.path.indexOf(localStorage.phone)>=0&&(misfotos++) ) : users++)
           phone = ()=>{
             x = prompt("● Escribe tu número de Teléfono para iniciar sesión!\n\n● No comparta co tenido inapropiado este sitio es para compartir con amigos")
             if (x) {
@@ -444,7 +445,7 @@
             phone()
           } else {
             cargado = true
-            media = (media.sort()).concat(default_media)
+            media = (media).concat(default_media)
             window.location.href = "#hmx3H"
           }
         }
