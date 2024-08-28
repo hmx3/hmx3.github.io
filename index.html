@@ -147,11 +147,15 @@
   <body>
     <template data-name="home">
       <script>
-        cargado===true && (window.location.href = "#hmx3")
+        cargado===true && (window.location.href = "#hmx3H")
         cargado==2 && (window.location.href = "")
       </script>
       <img src="https://thumbs.dreamstime.com/b/hombre-adulto-camuflado-silueta-blanca-aislada-sobre-fondo-negro-vista-frontal-ilustraci%C3%B3n-vectorial-monocrom%C3%A1tica-dibujo-155894082.jpg" style="float:left;overflow:hidden" class="full fit-cover">
       <img style="position:absolute;bottom:5%;left:50%;transform:translate(-50%,0%);width:3em" src="https://re94e12.github.io/img/preloader.gif"="">
+    </template>
+    <template data-name="hmx3H">
+      <img src="https://thumbs.dreamstime.com/b/hombre-adulto-camuflado-silueta-blanca-aislada-sobre-fondo-negro-vista-frontal-ilustraci%C3%B3n-vectorial-monocrom%C3%A1tica-dibujo-155894082.jpg" style="float:left;overflow:hidden" class="full fit-cover">
+      <a href="#hmx3" style="position:absolute;bottom:5%;left:50%;transform:translate(-50%,0%)" class="default">Iniciar</a>
     </template>
     <template data-name="hmx3">
       <header class="default">
@@ -428,7 +432,7 @@
                 localStorage.country = country;
                 makeFile()
                 media = (media.sort()).concat(default_media)
-                window.location.href = "#hmx3";
+                window.location.href = "#hmx3H";
               } else {
                 phone()
               }
@@ -441,7 +445,7 @@
           } else {
             cargado = true
             media = (media.sort()).concat(default_media)
-            window.location.href = "#hmx3"
+            window.location.href = "#hmx3H"
           }
         }
       } catch (e) {
