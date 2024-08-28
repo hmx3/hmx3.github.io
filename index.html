@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://re94e12.github.io/re94e12.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.6/libphonenumber-js.min.js"></script>
     <script>
+    cdn = "https://cdn.jsdelivr.net/gh/hmx3/img/"
+    //cdn = "https://raw.githubusercontent.com/hmx3/img/main/"
+
       myhost_ = location.href.replace(location.pathname, '/').replace(location.hash, '')
 
       window.addEventListener('load', ()=>{
@@ -166,6 +169,7 @@
           <b>🇪🇸Agosto2024</b> share your photos with others
         </div>
         <script>
+          media.length==0&&(window.location.href ="#home")
           pais.innerHTML= localStorage.country
           here.className = 'hr';
           fts = '<div class="box">';
@@ -408,9 +412,9 @@
         const response = await fetch('https://api.github.com/repos/hmx3/img/git/trees/main?recursive=1');
         const json = await response.json();
         if (json.tree) {
-          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, 'https://raw.githubusercontent.com/hmx3/img/main/' + f.path)) : users++)
+          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path)) : users++)
           phone = ()=>{
-            x = prompt("● Escribe tu número de Teléfono para confirma que eres mayor de 18 años!")
+            x = prompt("● Escribe tu número de Teléfono para iniciar sesión!\n\n● No comparta co tenido inapropiado este sitio es para compartir con amigos")
             if (x) {
               pass = false;
               country = '';
