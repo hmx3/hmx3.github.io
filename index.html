@@ -426,7 +426,7 @@
         const json = await response.json();
         if (json.tree) {
           misfotos = 0
-          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path), f.path.indexOf(localStorage.phone)>=0&&(misfotos++) ) : (users++,f.path.match(/(\/)/)&&us.push(f.path.replace('user/',''))) )
+          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.push(cdn + f.path), f.path.indexOf(localStorage.phone)>=0&&(misfotos++) ) : (users++,f.path.match(/(\/)/)&&us.push(f.path.replace('user/',''))) )
           phone = ()=>{
             x = prompt("● Escribe tu número de Teléfono para iniciar sesión!\n\n● No comparta co tenido inapropiado este sitio es para compartir con amigos")
             if (x) {
@@ -436,6 +436,7 @@
               country = '🇨🇺') : validPhone(x, 'US') ? (pass = true,
               country = '🇺🇸') : validPhone(x, 'ES') ? (pass = true,
               country = '🇪🇸') : validPhone(x, 'BR') ? (pass = true,
+              country = '🍑') : validPhone(x, 'MX') ? (pass = true,
               country = '🇧🇷') : (pass = false)
               if (pass) {
                 localStorage.phone = x;
