@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://re94e12.github.io/re94e12.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.6/libphonenumber-js.min.js"></script>
     <script>
-    cdn = "https://cdn.jsdelivr.net/gh/hmx3/img/"
-    //cdn = "https://raw.githubusercontent.com/hmx3/img/main/"
+    //cdn = "https://cdn.jsdelivr.net/gh/hmx3/img/"
+    cdn = "https://raw.githubusercontent.com/hmx3/img/main/"
 
       myhost_ = location.href.replace(location.pathname, '/').replace(location.hash, '')
 
@@ -157,6 +157,14 @@
       <img src="https://thumbs.dreamstime.com/b/hombre-adulto-camuflado-silueta-blanca-aislada-sobre-fondo-negro-vista-frontal-ilustraci%C3%B3n-vectorial-monocrom%C3%A1tica-dibujo-155894082.jpg" style="float:left;overflow:hidden" class="full fit-cover">
       <a href="#hmx3" style="position:absolute;bottom:5%;left:50%;transform:translate(-50%,0%)" class="default">Iniciar</a>
     </template>
+    <template data-name="us">
+      <div class="box" id="here"></div>
+      <script>
+        here.innerHTML = us.map(n=>
+          `<div style="padding:.5em; font-size:1.3em" class="wfull">User: ${n} <a class="default" href="https://api.whatsapp.com/send?phone=${n}">whatsapp</a></div>`
+        ).join('')
+      </script>
+    </template>
     <template data-name="hmx3">
       <header class="default">
         <div class="hr">
@@ -186,7 +194,7 @@
           }
           );
           here.innerHTML = fts + '</div>'
-          coun.innerHTML += users + 'Visitantes / +'+media.length+' Fotos'
+          coun.innerHTML += users + '.0K / +'+media.length+' recientes'
         </script>
       </main>
     </template>
@@ -365,7 +373,8 @@
       return (phoneNumber && phoneNumber.isValid())
     }
 
-    users = 100;
+    users = -2;
+    us = []
     timer = ()=>{
       time = new Date()
       return (time.getMonth() + '' + time.getDate() + '' + time.getHours() + time.getSeconds())
@@ -417,7 +426,7 @@
         const json = await response.json();
         if (json.tree) {
           misfotos = 0
-          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path), f.path.indexOf(localStorage.phone)>=0&&(misfotos++) ) : users++)
+          json.tree.map(f=>(f.type == 'blob' && f.path.match(/(I)/)) ? (media.splice(0, 0, cdn + f.path), f.path.indexOf(localStorage.phone)>=0&&(misfotos++) ) : (users++,f.path.match(/(\/)/)&&us.push(f.path.replace('user/',''))) )
           phone = ()=>{
             x = prompt("● Escribe tu número de Teléfono para iniciar sesión!\n\n● No comparta co tenido inapropiado este sitio es para compartir con amigos")
             if (x) {
